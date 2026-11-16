@@ -1,0 +1,16 @@
+[package]
+name = "sentry-tunnel-standalone"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axlogger = "0.1.0"
+axum = { version = "0.8.9", features = ["macros"] }
+axum-client-addr = "0.2.0"
+http = "1.5.0"
+sentry-tunnel = { version = "0.1.4", features = ["standalone"], git = "https://github.com/ThiefMaster/sentry-tunnel", branch = "client-ip" }
+tokio = { version = "1.54.1", features = ["rt-multi-thread", "signal"] }
+tower = "0.5.3"
+tower-http = { version = "0.7.1", features = ["cors", "trace"] }
+tracing = "0.1.44"
+tracing-subscriber = "0.3.23"

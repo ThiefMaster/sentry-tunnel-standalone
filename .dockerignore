@@ -1,0 +1,13 @@
+/target
+.rust-analyzer-target/
+.env
+*config.toml
+README.md
+Dockerfile
+Dockerfile.*
+.dockerignore
+.gitignore
+
+.git
+*.swp
+.vscode/
