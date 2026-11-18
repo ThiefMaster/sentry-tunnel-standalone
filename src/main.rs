@@ -5,7 +5,7 @@ use std::sync::Arc;
 use axlogger::logger_middleware;
 use axum::Router;
 use axum::body::Bytes;
-use axum::extract::{FromRef, State};
+use axum::extract::{DefaultBodyLimit, FromRef, State};
 use axum::routing::post;
 use axum_client_addr::{ClientIp, ClientIpConfig, ClientIpConfigSource};
 use http::{HeaderValue, Method, StatusCode};
@@ -70,6 +70,7 @@ async fn main() {
         .route(&tunnel_config.path, post(sentry_tunnel_handler))
         .layer(
             ServiceBuilder::new()
+                .layer(DefaultBodyLimit::max(20 * 1024 * 1024))
                 .layer(TraceLayer::new_for_http())
                 .layer(axum::middleware::from_fn(logger_middleware))
                 .layer(cors_middleware),
